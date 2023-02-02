@@ -5,6 +5,7 @@ function RollDice() {
   const [diceOptions, setDiceOptions] = useState([{ numDice: 1, numSides: 6 }]);
   const [results, setResults] = useState([]);
 
+
   const roll = () => {
     let newResults = [];
     diceOptions.forEach(({ numDice, numSides }) => {
@@ -30,26 +31,30 @@ function RollDice() {
     setDiceOptions(updatedOptions);
   };
 
+
   return (
     <div className="background">
       <div className="main">
-        <h1>Rec gay</h1>
         {diceOptions.map((diceOption, index) => (
           <div key={index} className="dice-input">
-            
+
             <input
               type="number"
               value={diceOption.numDice}
               onChange={(e) => updateDiceOption(index, "numDice", e.target.value)}
             />
             <label>dice</label>
-            
+
             <input
               type="number"
               value={diceOption.numSides}
               onChange={(e) => updateDiceOption(index, "numSides", e.target.value)}
             />
             <label>sided</label>
+
+            {index !== 0 && (
+              <button className="remove-dice-button" onClick={() => setDiceOptions(diceOptions.filter((_, i) => i !== index))}>Remove</button>
+            )}
           </div>
         ))}
         <button className="add-dice-button" onClick={addDiceOption}>Add Dice</button>
@@ -60,11 +65,13 @@ function RollDice() {
                 <span className="result-set">
                   ({result.map((roll, rollIndex) => (
                     <React.Fragment key={rollIndex}>
-                      <span
-                        className={`result ${roll === diceOptions[index].numSides ? "highlight-green" : roll === 1 ? "highlight-red" : ""}`}
-                      >
-                        {roll}
-                      </span>
+                      {diceOptions[rollIndex] && (
+                        <span
+                          className={`result ${roll === diceOptions[rollIndex].numSides ? "highlight-green" : roll === 1 ? "highlight-red" : ""}`}
+                        >
+                          {roll}
+                        </span>
+                      )}
                       {rollIndex !== result.length - 1 && " + "}
                     </React.Fragment>
                   ))})
