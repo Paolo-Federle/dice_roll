@@ -33,6 +33,7 @@ function RollDice() {
   return (
     <div className="background">
       <div className="main">
+        <h1>Rec gay</h1>
         {diceOptions.map((diceOption, index) => (
           <div key={index} className="dice-input">
             
