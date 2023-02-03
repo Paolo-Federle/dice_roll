@@ -4,6 +4,8 @@ import './App.css'
 function RollDice() {
   const [diceOptions, setDiceOptions] = useState([{ numDice: 1, numSides: 6 }]);
   const [results, setResults] = useState([]);
+  const [hideRolls, setHideRolls] = useState(false);
+
 
 
   const roll = () => {
@@ -60,7 +62,7 @@ function RollDice() {
         <button className="add-dice-button" onClick={addDiceOption}>Add Dice</button>
         <div className="dice-result">
           <div>
-            {results.map(({ result, total }, index) => (
+            {!hideRolls && results.map(({ result, total }, index) => (
               <React.Fragment key={index}>
                 <span className="result-set">
                   ({result.map((roll, rollIndex) => (
@@ -81,8 +83,13 @@ function RollDice() {
             ))}
             = <span className="roll-result">{results.reduce((total, { total: rollTotal }) => total + rollTotal, 0)}</span>
           </div>
+
           <button className="roll-dice-button" onClick={roll}>Roll Dice</button>
         </div>
+        <div>
+            <input type="checkbox" checked={hideRolls} onChange={() => setHideRolls(!hideRolls)} />
+            <label>Hide Single Dice Rolls</label>
+          </div>
       </div>
     </div>
   );
