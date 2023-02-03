@@ -67,30 +67,22 @@ function RollDice() {
                 <span className="result-set">
                   ({result.map((roll, rollIndex) => (
                     <React.Fragment key={rollIndex}>
-                      {diceOptions[rollIndex] ? (
+                      {diceOptions[rollIndex] && (
                         <span
-                          className={`result ${roll === diceOptions[rollIndex].numSides
-                              ? "highlight-green"
-                              : roll === 1
-                                ? "highlight-red"
-                                : ""
-                            }`}
+                          className={`result ${roll === diceOptions[index].numSides ? "highlight-green" : roll === 1 ? "highlight-red" : ""}`}
                         >
                           {roll}
                         </span>
-                      ) : (
-                        <span className="result">{roll}</span>
                       )}
                       {rollIndex !== result.length - 1 && " + "}
                     </React.Fragment>
                   ))})
                 </span>
-                {index !== result.length - 1 && " + "}
+                {index !== results.length - 1 && " + "}
               </React.Fragment>
             ))}
             = <span className="roll-result">{results.reduce((total, { total: rollTotal }) => total + rollTotal, 0)}</span>
           </div>
-
           <button className="roll-dice-button" onClick={roll}>Roll Dice</button>
         </div>
         <div>
