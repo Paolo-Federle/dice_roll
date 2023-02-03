@@ -61,7 +61,7 @@ function RollDice() {
                   ({result.map((roll, rollIndex) => (
                     <React.Fragment key={rollIndex}>
                       <span
-                        className={`result ${roll === diceOptions[index].numSides ? "highlight-green" : roll === 1 ? "highlight-red" : ""}`}
+                        className={`result ${roll == diceOptions[index].numSides ? "highlight-green" : roll === 1 ? "highlight-red" : ""}`}
                       >
                         {roll}
                       </span>
