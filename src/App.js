@@ -6,7 +6,6 @@ function RollDice() {
   const [results, setResults] = useState([]);
   const [hideRolls, setHideRolls] = useState(false);
   const [diceOptionsCopy, setDiceOptionsCopy] = useState([]);
-  const [resultsShouldUpdate, setResultsShouldUpdate] = useState(true);
 
 
   const roll = () => {
@@ -51,6 +50,15 @@ function RollDice() {
   const handleRemoveDie = (index) => {
     setDiceOptions(diceOptions.filter((_, i) => i !== index));
   };
+
+  const handleInputChange = (index, key, newValue) => {
+    const reg = /^[1-9]\d*$/;
+    if (reg.test(newValue)) {
+      let updatedOptions = [...diceOptions];
+      updatedOptions[index][key] = parseInt(newValue, 10);
+      setDiceOptions(updatedOptions);
+    }
+  };
   
 
   return (
@@ -62,14 +70,14 @@ function RollDice() {
             <input
               type="number"
               value={diceOption.numDice}
-              onChange={(e) => updateDiceOption(index, "numDice", e.target.value)}
+              onChange={(e) => handleInputChange(index, "numDice", e.target.value)}
             />
             <label>dice</label>
 
             <input
               type="number"
               value={diceOption.numSides}
-              onChange={(e) => updateDiceOption(index, "numSides", e.target.value)}
+              onChange={(e) => handleInputChange(index, "numSides", e.target.value)}
             />
             <label>sided</label>
 

@@ -1,1 +1,1 @@
-### [online link](https://dice-roll-beta.vercel.app/)
+### [online link](https://paolo-federle.github.io/dice_roll/)
