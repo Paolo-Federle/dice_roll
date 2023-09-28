@@ -41,12 +41,6 @@ function RollDice() {
     roll();
   };
 
-  const updateDiceOption = (index, key, value) => {
-    let updatedOptions = [...diceOptions];
-    updatedOptions[index][key] = value;
-    setDiceOptions(updatedOptions);
-  };
-
   const handleRemoveDie = (index) => {
     setDiceOptions(diceOptions.filter((_, i) => i !== index));
   };
